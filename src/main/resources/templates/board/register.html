@@ -1,0 +1,22 @@
+{{>/includes/header}}
+<div class="col-sm-12">
+    <h2>Board Register</h2>
+    <form action="/board/register" method="post">
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" class="form-control" name="title" placeholder="Title" id="title">
+        </div>
+        <div class="form-group">
+            <label>Writer</label>
+            <input type="text" class="form-control" name="writer" placeholder="Writer" id="writer">
+        </div>
+        <div class="form-group">
+            <label>Content</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="content"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{{>/includes/footer}}
+
+
