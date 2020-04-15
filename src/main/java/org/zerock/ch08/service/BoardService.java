@@ -13,4 +13,5 @@ public interface BoardService {
 
     BoardDTO getBoard(Long bno);
 
+    void remove(Long bno);
 }

@@ -8,10 +8,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.ch08.dto.BoardDTO;
 import org.zerock.ch08.dto.PageDTO;
@@ -61,8 +58,24 @@ public class BoardController {
 
         log.info("read get...");
 
+        log.info("pageDTO: " + pageDTO);
+
         model.addAttribute("boardDTO", boardService.getBoard(bno));
 
     }
+
+    @PostMapping("/remove")
+    public String remove(@RequestParam(name = "bno") Long bno, RedirectAttributes redirectAttributes){
+
+        log.info("remove " + bno);
+
+        boardService.remove(bno);
+
+        redirectAttributes.addFlashAttribute("result", "success");
+
+        return "redirect:/board/list";
+
+    }
+
 
 }

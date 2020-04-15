@@ -1,28 +1,61 @@
 {{>/includes/header}}
 <div class="col-sm-12">
     <h2>Board Read</h2>
-    <form class="actionForm">
-        <div class="form-group">
-            <label>Bno</label>
-            <input type="text" class="form-control" name="bno" value="{{boardDTO.bno}}" readonly>
-        </div>
-        <div class="form-group">
-            <label>Title</label>
-            <input type="text" class="form-control" name="title" value="{{boardDTO.title}}" readonly>
-        </div>
-        <div class="form-group">
-            <label>Writer</label>
-            <input type="text" class="form-control" name="writer" value="{{boardDTO.writer}}" readonly>
-        </div>
-        <div class="form-group">
-            <label>Content</label>
-            <textarea class="form-control" rows="3" name="content" readonly>{{boardDTO.content}}</textarea>
-        </div>
+
+    <div class="form-group">
+        <label>Bno</label>
+        <input type="text" class="form-control" name="bno" value="{{boardDTO.bno}}" readonly>
+    </div>
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-control" name="title" value="{{boardDTO.title}}" readonly>
+    </div>
+    <div class="form-group">
+        <label>Writer</label>
+        <input type="text" class="form-control" name="writer" value="{{boardDTO.writer}}" readonly>
+    </div>
+    <div class="form-group">
+        <label>Content</label>
+        <textarea class="form-control" rows="3" name="content" readonly>{{boardDTO.content}}</textarea>
+    </div>
+
+    <form class="actionForm" method="get">
+        <input type="hidden" name="page" value="{{pageDTO.page}}">
+        <input type="hidden" name="size" value="{{pageDTO.size}}">
+        <input type="hidden" name="bno" value="{{boardDTO.bno}}">
     </form>
     <button type="button" class="btn btn-primary">GO LIST</button>
     <button type="button" class="btn btn-warning">MODIFY</button>
     <button type="button" class="btn btn-danger">DELETE</button>
 </div>
+
+<script>
+$(document).ready(function(){
+
+    var formObj = $(".actionForm");
+
+    //GO LIST
+    $(".btn-primary").on("click",function(){
+        formObj.attr("action", "/board/list");
+        formObj.attr("method", "get");
+        formObj.submit();
+    });
+
+    //MODIFY
+    $(".btn-warning").on("click",function(){
+
+    });
+
+    //DELETE
+    $(".btn-danger").on("click",function(){
+
+        formObj.attr("action", "/board/remove");
+        formObj.attr("method", "post");
+        formObj.submit();
+    });
+
+});
+</script>
 {{>/includes/footer}}
 
 

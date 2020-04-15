@@ -86,6 +86,22 @@ $(document).ready(function(){
         formObj.submit();
 
     });
+
+    $(".boardItem").on("click", function() {
+
+        var bno = $(this).data("bno");
+
+        console.log("bno", bno);
+
+        formObj.append("<input type='hidden' name='bno' value=" + bno +">");
+
+        formObj.attr("action", "/board/read");
+        formObj.attr("method", "get");
+
+        formObj.submit();
+
+    });
+
 });
 </script>
 
