@@ -39,12 +39,12 @@ public class BoardServiceImpl implements BoardService {
     public PageResultDTO<Board, BoardDTO> getList(Pageable pageable) {
 
         Page<Board> result = boardRepository.findAll(pageable);
-
+        //Board 엔티티 객체를 BoardDTO로 변환
         Function<Board, BoardDTO> fn = (Board e) -> {
             return BoardDTO.builder().bno(e.getBno())
                     .title(e.getTitle())
                     .writer(e.getWriter())
-                    .regdate(e.getRegDate())
+                    .regDate(e.getRegDate())
                     .build();
         };
 
@@ -69,10 +69,16 @@ public class BoardServiceImpl implements BoardService {
         boardRepository.deleteById(bno);
     }
 
+
     @Override
     public void modify(BoardDTO boardDTO) {
 
-        Board board = convertDTOToEntity(boardDTO);
+        Optional<Board> result = boardRepository.findById(boardDTO.getBno());
+
+        Board board = result.get();
+
+        board.changeTitle(boardDTO.getTitle());
+        board.changeContent(boardDTO.getContent());
 
         boardRepository.save(board);
 
