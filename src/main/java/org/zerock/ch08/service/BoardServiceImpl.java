@@ -69,10 +69,20 @@ public class BoardServiceImpl implements BoardService {
         boardRepository.deleteById(bno);
     }
 
+    @Override
+    public void modify(BoardDTO boardDTO) {
+
+        Board board = convertDTOToEntity(boardDTO);
+
+        boardRepository.save(board);
+
+    }
+
 
     private Board convertDTOToEntity(BoardDTO boardDTO){
 
-        return Board.builder().bno(boardDTO.getBno())
+        return Board.builder()
+                .bno(boardDTO.getBno())
                 .title(boardDTO.getTitle())
                 .content(boardDTO.getContent())
                 .writer(boardDTO.getWriter())

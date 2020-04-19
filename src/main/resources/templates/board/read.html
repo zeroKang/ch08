@@ -43,7 +43,9 @@ $(document).ready(function(){
 
     //MODIFY
     $(".btn-warning").on("click",function(){
-
+        formObj.attr("action", "/board/modify");
+        formObj.attr("method", "get");
+        formObj.submit();
     });
 
     //DELETE

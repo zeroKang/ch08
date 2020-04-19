@@ -53,10 +53,10 @@ public class BoardController {
 
     }
 
-    @GetMapping("/read")
-    public void reaed(@ModelAttribute("pageDTO") PageDTO pageDTO, Long bno, Model model){
+    @GetMapping(value = {"/read","/modify"})
+    public void read(@ModelAttribute("pageDTO") PageDTO pageDTO, Long bno, Model model){
 
-        log.info("read get...");
+        log.info("read get... or modify.. ");
 
         log.info("pageDTO: " + pageDTO);
 
@@ -70,6 +70,19 @@ public class BoardController {
         log.info("remove " + bno);
 
         boardService.remove(bno);
+
+        redirectAttributes.addFlashAttribute("result", "success");
+
+        return "redirect:/board/list";
+
+    }
+
+    @PostMapping("/modify")
+    public String modifyPost(BoardDTO boardDTO, RedirectAttributes redirectAttributes){
+
+        log.info("modify post.. " + boardDTO);
+
+        boardService.modify(boardDTO);
 
         redirectAttributes.addFlashAttribute("result", "success");
 
