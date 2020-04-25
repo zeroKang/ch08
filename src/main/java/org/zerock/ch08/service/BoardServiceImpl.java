@@ -1,5 +1,7 @@
 package org.zerock.ch08.service;
 
+import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -9,12 +11,16 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.zerock.ch08.dto.BoardDTO;
 import org.zerock.ch08.dto.PageResultDTO;
+import org.zerock.ch08.dto.SearchDTO;
 import org.zerock.ch08.entity.Board;
+import org.zerock.ch08.entity.QBoard;
 import org.zerock.ch08.repository.BoardRepository;
+import org.zerock.ch08.repository.BoardSearchPredicate;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 @Service
 @Transactional
@@ -76,6 +82,12 @@ public class BoardServiceImpl implements BoardService {
 
         boardRepository.save(board);
 
+    }
+
+    @Override
+    public PageResultDTO<Board, BoardDTO> searchList(SearchDTO searchDTO, Pageable pageable) {
+
+        return null;
     }
 
 
