@@ -18,7 +18,7 @@ public class BoardDTO {
 
     private String title, content, writer;
 
-    private LocalDateTime regdate, modDate;
+    private LocalDateTime regDate, modDate;
 
     public static BoardDTO of(Board board){
 
@@ -27,7 +27,7 @@ public class BoardDTO {
         dto.setTitle(board.getTitle());
         dto.setContent(board.getContent());
         dto.setWriter(board.getWriter());
-        dto.setRegdate(board.getRegDate());
+        dto.setRegDate(board.getRegDate());
         dto.setModDate(board.getModDate());
 
         return dto;
